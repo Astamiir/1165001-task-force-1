@@ -4,7 +4,7 @@
     class Task
     {
         /**
-         * Набор констант: действия, статусы, роли
+         * Набор констант: действия и статусы
          */
         const STATUS_NEW = 1;
         const STATUS_CANCELLED = 2;
@@ -18,8 +18,6 @@
         const ACTION_REFUSE = 4;
 
         /**
-         * Русификация статусов
-         *
          * @var string[]
          */
         const STATUSES = [
@@ -59,13 +57,6 @@
                 'statusAfterAction' => self::STATUS_FAILED,
             ],
         ];
-
-
-        /**
-         * Свойства для хранения
-         * id заказчика, id исполнителя,
-         * активный статус
-         */
 
         /**
          * @var int
@@ -111,7 +102,7 @@
          * @param int|null $statusId
          * @return string
          */
-        public function getStatusName(int $statusId = null)
+        public function getStatusName(int $statusId = null): string
         {
             $statusId = $statusId ? $statusId : $this->statusId;
             return self::STATUSES[$statusId] ?? '#N/A';

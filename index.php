@@ -12,11 +12,11 @@
     $task = new Task(123, 321);
     $tests = $errors = 0;
 
+    // проверка статусов и доступных действий после вызова методов объекта
     assertValue($task->getStatusId() === Task::STATUS_NEW, 'Default Status', $tests, $errors);
     assertValue($task->getAvailableActions() === [Task::ACTION_CANCEL, Task::ACTION_REPLY],
         'Available actions for STATUS_NEW', $tests, $errors);
 
-    // Проверка статусов
     $task->cancel();
     assertValue($task->getStatusId() === Task::STATUS_CANCELLED, 'Cancel Action', $tests, $errors);
 
@@ -32,7 +32,7 @@
     assertValue($task->getStatusId() === Task::STATUS_FAILED, 'Refuse Action', $tests, $errors);
 
 
-    // Проверка работы функции getStatusAfterAction
+    // Проверка работы функции getStatusAfterAction и getStatusName
     $statusName = $task::getStatusAfterAction($task::ACTION_CANCEL);
     $statusName2 = $task->getStatusName($task::STATUS_CANCELLED);
     assertValue($statusName === $statusName2, 'Task::getStatusAfterAction(cancel)', $tests, $errors);
